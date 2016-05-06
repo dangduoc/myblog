@@ -1,0 +1,56 @@
+﻿<div id="wrapper-action-post" class="Container" style="padding:10px 30px">
+    <h1 class="text-center">Write Post</h1>
+    <div class="row">
+        @using (Html.BeginForm("WritePost", "DailyPost", FormMethod.Post, new { id = "formpost", role = "form" }))
+        {
+            var today = DateTime.Now.ToString("yyyy-MM-dd");
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input name="title" class="form-control" type="text" style="font-size: 24px" id="title" spellcheck="false" required />
+            </div>
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" name="date" class="form-control" id="date" value='@today' required />
+            </div>
+            <textarea id="editor"></textarea>
+        }
+        <a class="btn btn-primary" id="preview-btn" href="#preview-area">Xem thử</a>
+        <input type="submit" class="btn btn-primary" value="Đăng bài" form="formpost" />
+        <input id="text-content" name="content" hidden />
+    </div>
+    <div id="preview-area">
+        <h2 style="border-bottom:0.5px solid black">Bài xem thử </h2>
+        <h3><div id="title-preview"></div></h3>
+        <small id="date-preview"></small>
+        <div class="post-content">
+            <div id="preview"></div>
+        </div>
+    </div>
+</div>
+@{
+    if (!string.IsNullOrEmpty(ViewBag.OK))
+    {
+        <h1 style="color:red;display:block;clear:both">@ViewBag.OK</h1>
+    }
+}
+<script src="~/ckeditor/ckeditor.js"></script>
+
+<script>
+    $(function () {
+        CKEDITOR.replace("editor");
+        $("#preview-btn").click(function () {
+            var html = CKEDITOR.instances.editor.getData();
+            $("#title-preview").html($("#title").val());
+            $("#text-content").val(html);
+            $("#preview").html(html);
+            $("#date-preview").text($("#date").val());
+
+        })
+        timer = setInterval(updateDiv, 100);
+        function updateDiv() {
+            var editorText = CKEDITOR.instances.editor.getData();
+            $('#text-content').val(editorText);
+        }
+    })
+</script>
+

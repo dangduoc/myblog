@@ -1,0 +1,110 @@
+﻿@model IEnumerable<MyFirstBlog.Models.Trip>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using MyFirstBlog.Models;
+
+<div class="Container" style="margin-top: 50px;" id="trips">
+    @{
+        var data = new MyBlogDBModel();
+        
+    }
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="nav-top-article" style="margin-bottom:20px;">
+                <a href="/Home">Home</a> <i class="fa fa-angle-right"></i><a href="FriendsandMe/Trips">Trips</a>
+            </div>
+            @foreach (var trip in Model)
+            {
+                var photo = trip.imgThumbnail;
+                <article id="" class="" style="margin-bottom: 50px;">
+                    <div class="">
+                        <img src='@Url.Content(photo)' style="max-width: 100%" />
+                        <div class="header-standard text-center" style="margin-top: 10px; margin-bottom: 20px;">
+                            <h2><a href="/FriendsandMe/Trip?id=@trip.postID.ToString()" class="text-uppercase">@trip.postTitle</a></h2>
+                            <div class="">
+                                <span>With: @trip.friends</span>
+                                <br />
+                                <span>written by: </span> <a href="" class="author">@data.userInfoes.Where(u => u.userID == trip.userID).FirstOrDefault().name</a>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <div class="" style="margin-bottom: 20px; border-bottom: ">
+                                    <div class="">
+                                        <span><i class="fa fa-calendar-o"></i>@trip.date.Value.ToString("MMMM dd,yyyy")</span>
+                                        <span>|<span>
+                                            <span><a href="/FriendsandMe/Trip?id=@trip.postID.ToString()" class="fb-comment" id="fb-comment-@trip.postID"><i class="fa fa-comment-o"></i></a></span>
+                                            <span>|<span>
+                                                <a target="_blank" href="" class="fb"><i class="fa fa-facebook"></i><span>Share</span></a>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <p>@trip.postSummary</p>
+                                    <div class="text-center text-uppercase"><a href="/FriendsandMe/Trip?id=@trip.postID.ToString()" class="read-more">Continue Reading</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            }
+        </div>
+        <script>
+            $('#fb-comment-6').load(function () {
+                alert('aasd');
+                var URL = $(this).attr('href');
+                var crnt_object = $(this);
+                $.ajax({
+                    url: 'http://graph.facebook.com/fql?q=select comment_count, share_count, like_count from link_stat where url = "' + URL + '"',
+                    type: 'get',
+                    success: function (data) {
+                        var comments = data.data[0].comment_count;
+                        crnt_object.text('commnent:' + comments);
+                    }
+                })
+            })
+            $(function () {
+               
+            })
+        </script>
+        <div class="col-sm-3">
+            <div>
+                <h1><small><i class="fa fa-arrow-right" aria-hidden="true"></i>FOLLOW ME</small></h1>
+                <div class="fb-page" data-href="https://www.facebook.com/duocdang.95/" data-height="250" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                    <div class="fb-xfbml-parse-ignore">
+                        <blockquote cite="https://www.facebook.com/duocdang.95/"><a href="https://www.facebook.com/duocdang.95/">Đặng Minh Được</a></blockquote>
+                    </div>
+                </div>
+            </div>
+            <div style="">
+                <h1><small><i class="fa fa-arrow-right" aria-hidden="true"></i>KEEP IN TOUCH</small></h1>
+                <ul class="social-contact text-left list-inline">
+                    <li><a href="" class="fb" target="_blank"><i class="fa fa-facebook"></i><span>Facebook</span></a></li>
+                    <li><a href="#" class="twitter" target="_blank"><i class="fa fa-twitter"></i><span>Twitter</span></a></li>
+                    <li><a href="#" class="youtube" target="_blank"><i class="fa fa-youtube-play"></i><span>Youtube&nbsp&nbsp&nbsp</span></a></li>
+                    <li><a href="#" class="instagram" target="_blank"><i class="fa fa-instagram"></i><span>Instagram</span></a></li>
+                    <li><a href="" class="google" target="_blank"><i class="fa fa-google-plus"></i><span>Google +&nbsp&nbsp</span></a></li>
+                    <li><a href="#" class="skype" target="_blank"><i class="fa fa-skype"></i><span>Skype</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h1><small><i class="fa fa-arrow-right" aria-hidden="true"></i>RECENT POST</small></h1>
+                <ul class="recent-post-wrapper" style="overflow: hidden;">
+                    @foreach (MyFirstBlog.Models.Trip t in ViewBag.lastests)
+                    {
+                        <li class="recent-post">
+                            <img src="@Url.Content(t.imgThumbnail)" class="img-responsive" style="background-color: black" />
+                            <div class="text-center">
+                                <a href="/FriendsandMe/Trip/@t.postID.ToString()">
+                                    <h4 class="text-uppercase">@t.postTitle<br />
+                                    </h4>
+                                    <small>April 09,2016</small>
+                                </a>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

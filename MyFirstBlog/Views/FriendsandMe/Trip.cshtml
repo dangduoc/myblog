@@ -1,0 +1,122 @@
+﻿@model MyFirstBlog.Models.Trip
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using MyFirstBlog.Models;
+@{
+    var root = ViewBag.root;
+    var data = new MyBlogDBModel();
+    var photothumbnail = Model.imgThumbnail;
+}
+<div class="Container" style="margin-top: 50px;" id="trip-detail">
+    <div id="myModal" class="modal">
+    <span class="close">×</span>
+    <img class="modal-content"/>
+    <div class="caption"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="nav-top-article">
+                <a href="/Home">Home</a> <i class="fa fa-angle-right"></i><a href="/FriendsandMe/Trips">Trips</a>
+            </div>
+            <article id="" class="">
+                <h2>@Model.postTitle
+                </h2>
+                <small>@Model.date.Value.ToString("MMMM dd,yyyy")</small><br />
+                <small>Written by:<a class="author" href="#"> @data.userInfoes.Where(u => u.userID == Model.userID).FirstOrDefault().name</a></small>
+                <div class="post-content">
+                    @Html.Raw(Model.postContent)
+                </div>
+            </article>
+            <h3>Xem thêm hình ảnh trong chuyến đi này: <a href="@Model.imageFolder"><small>Tại đây</small></a></h3>
+            <div class="facebook-plugin-daily-post">
+                @{
+                    var str = "http://dangduoc.azurewebsites.net/FriendsandMe/Trip?id=" + Model.postID.ToString();
+                    <div class="fb-like" data-href='@str' data-width="30" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" style="display:block"></div>
+                    <h2>Comment</h2>
+                    <div class="fb-comments" data-href='@str' data-width="100%" data-numposts="5"></div>
+                }
+            </div>
+        </div>
+        <div class="col-sm-3" id="aside">
+            <div>
+                <h1><small><i class="fa fa-arrow-right" aria-hidden="true"></i>FOLLOW ME</small></h1>
+                  <div class="fb-page" data-href="https://www.facebook.com/duocdang.95/"  data-height="250" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/duocdang.95/"><a href="https://www.facebook.com/duocdang.95/">Đặng Minh Được</a></blockquote></div></div> 
+            </div>
+            <div style="">
+                <h1><small><i class="fa fa-arrow-right" aria-hidden="true"></i>KEEP IN TOUCH</small></h1>
+                <ul class="social-contact text-left list-inline">
+                    <li><a href="" class="fb" target="_blank"><i class="fa fa-facebook"></i><span>Facebook</span></a></li>
+                    <li><a href="#" class="twitter" target="_blank"><i class="fa fa-twitter"></i><span>Twitter</span></a></li>
+                    <li><a href="#" class="youtube" target="_blank"><i class="fa fa-youtube-play"></i><span>Youtube&nbsp&nbsp&nbsp</span></a></li>
+                    <li><a href="#" class="instagram" target="_blank"><i class="fa fa-instagram"></i><span>Instagram</span></a></li>
+                    <li><a href="" class="google" target="_blank"><i class="fa fa-google-plus"></i><span>Google +&nbsp&nbsp</span></a></li>
+                    <li><a href="#" class="skype" target="_blank"><i class="fa fa-skype"></i><span>Skype</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h1><small><i class="fa fa-arrow-right" aria-hidden="true"></i>RECENT POST</small></h1>
+                <ul class="recent-post-wrapper" style="overflow: hidden;">
+                    @foreach (MyFirstBlog.Models.Trip t in ViewBag.others)
+                    {
+                    <li class="recent-post">
+                        <img src="@Url.Content(t.imgThumbnail)" class="img-responsive" style="background-color: black" />
+                        <div class="text-center">
+                            <a href="/FriendsandMe/Trip/@t.postID.ToString()">
+                                <h4 class="text-uppercase">@t.postTitle<br />
+                                </h4>
+                                <small>April 09,2016</small>
+                            </a>
+                        </div>
+                    </li>
+                    }
+                </ul>
+            </div>
+            <div>
+                <ul class="list-unstyled">
+                    <li><h1><small><i class="fa fa-arrow-right" aria-hidden="true"></i>PLAYLIST YOUTUBE</small></h1></li>
+                    <li>
+                        <iframe width="100%" src="https://www.youtube.com/embed/videoseries?list=PLa_OMyBy_S9M2MCQa-CY5BXJq1_qdlwNy" frameborder="0" allowfullscreen></iframe>
+                    </li>
+                    <li>
+                        <iframe width="100%" src="https://www.youtube.com/embed/videoseries?list=PLa_OMyBy_S9MBKe7difXP_w2Zik4RkbZM" frameborder="0" allowfullscreen></iframe>
+                    </li>
+                    <li>
+                        <iframe width="100%" src="https://www.youtube.com/embed/videoseries?list=PLa_OMyBy_S9MA85QoC4Yjg3sHPQN0L4ZY" frameborder="0" allowfullscreen></iframe>
+                    </li>
+                    <li>
+                        <iframe width="100%" src="https://www.youtube.com/embed/videoseries?list=PLa_OMyBy_S9Ppr010HT3p2vXE_c3gnB1s" frameborder="0" allowfullscreen></iframe>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <style>
+            @@media (max-width: 760px)
+            {
+                #aside{
+                    display: none;
+                }
+            }
+            .stick{
+            	position: fixed;
+            	top:50px;
+            	right: 0px;
+            	height:100vh;
+            }
+            .stick-bottom{
+            	position: absolute;
+            	bottom: 0;
+            	right: 0px;
+            }
+    </style>
+</div>
+@section meta{
+    <meta property="og:site_name" content="Ted's Blog'" />
+    <meta property="og:url" content='@str' />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="@Model.postTitle" />
+    <meta property="og:description" content="@Model.postSummary" />
+    <meta property="og:image" content="@photothumbnail">
+    <meta property="fb:app_id" content="219237851782524" />
+}

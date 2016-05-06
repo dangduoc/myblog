@@ -1,0 +1,127 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("partialEditMoment")
+<div class="Container" style="color: white; margin-top: 50px; background-color: #2d2d30">
+    <div id="img-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width: 90%; color: black !important">
+
+            <!-- Modal content-->
+            <div class="modal-content" style="max-width: 100%; width: 100%;border-radius:0px">
+                <div class="modal-header" style="padding: 15px; border: none">
+                    <button type="button" style="color: black; top: 5px; right: 5px; z-index: 1002" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-8 thumbnail" style="background-color:#000">
+                            <img class="img-modal img-thumbnail" src="" style="max-width:100%" />
+                        </div>
+                        <div class="col-md-4" style="padding:5px;max-height:450px;overflow:auto">
+                            @{  <h3 class="title-photo"></h3>
+                                <span class=".lead">Upload by: <span class="author-photo"></span></span>
+                                <div style="font-size: 15px;margin-bottom:15px;"><div class="summary-photo"></div></div>
+                                <div class="facebook-like"></div>
+                                <div class="facebook-comment"></div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $(".thumbnail img").click(function () {
+                var href = 'http://dangduoc.azurewebsites.net/FriendsandMe/Moment?id=' + $(this).attr("data-id");
+                var src = $(this).attr("src");
+                var summary = $(this).siblings().eq(1).text();
+                var author=$(this).siblings().eq(2).text();
+                $(".img-modal").attr("src", src); 
+                $(".summary-photo").html(summary);
+                $(".title-photo").text($(this).next("p.title").text());
+                $(".author-photo").html(author);
+                $(".facebook-comment").html(' <div class="fb-comments" data-href="'+href+'"  data-width="100%" data-numposts="5"></div>')
+                $(".facebook-like").html('<div class="fb-like" data-href="' +href+'"  data-width="20" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" style="display: block"></div>')
+                FB.XFBML.parse();
+            });
+        })
+    </script>
+    <div class="row">
+        <img class="img-responsive" src="https://lh3.googleusercontent.com/C9IFs5DvWGPwasEkxRAN3Nopx8UeQraeuG5lILmrZGfLGRJwFW2bXpDovoOXOrdnmPOGWExBM6cPugo2E18GZTj6riQpIbxAcKFWtHwWOgY3SjI_2mxzX-z7CPQwdWh76222wtOh6CAJM4em6rpqv7BjcRvKcyHhV5wRFaBC-O5ZIgDdGYWH4KmE-MKL6rjzfcesce4-3WF2g2MTUDxZf-9GB-cZ8WpWdLyt0_D4aOEYXYsZk_1CGQMCPz3-0b8fpecw1xYW_bqPRMqRRXMe_UuSjyfwTfxk12I27jrNtBxAsnTnTBU2QX66WvCqq1CKy06FjG86CCPcbWXSu0ltRznAdDvIyjMYducwQxRPPBOth6prgMr353U-hksMntbqqCtT1q1S_Q9wZw_7rP6NoNkF1CFRfiav3ydOWuz2ens9YpDhUyg9I0J-a-EAlcnJrn9xTlmB57tNPrlgeVZeXRazjZGPFr3zXCoPOKDh3NwqJjnATa4bpy-dJjfB3Ph67YJaOqw9vXm_SjShm84KnGka1uNZA6x81hZq-f3S33Glf_DevLftEnQll0OorhPsavvx=w1200-h500-no" />
+        <div class="text-center" style="border-bottom: 1px solid rgba(255,255,255,0.2); padding: 15px 0 15px 0;">
+            <span class="lead">Ted's Photo Collection</span>
+            @{
+                if(MyFirstBlog.Common.Rules.checkUsertoUpload())
+                { 
+                <button class="btn btn-primary" data-toggle="modal" data-target="#editpost-modal" id="editpost">
+                    Upload photo
+                </button>
+                }
+}
+        </div>
+    </div>
+    <div id="photo-area">
+        @{
+    var data = new MyFirstBlog.Models.MyBlogDBModel();
+            List<List<MyFirstBlog.Models.BestMoment>> listmoment = (List<List<MyFirstBlog.Models.BestMoment>>)ViewBag.list;
+            for (int i = 0; i < listmoment.Count; i++)
+            {
+            <div class="row">
+                @foreach (var photo in listmoment[i])
+                {
+                    <div class="col-sm-4">
+                        <div class="thumbnail">
+                            <img class="img-responsive img-thumbnail" data-id="@photo.momentID" data-toggle="modal" data-target="#img-modal" src="@photo.Image" alt="@photo.Date_create.ToString("MMMM dd,yyyy")" title="@photo.Date_create.ToString("MMMM dd,yyyy")" />
+                            <p class="title text-center">@photo.Title</p>
+                            <p class="summary" hidden>@photo.Summary</p>
+                            <p class="author text-center" style="font-size:13px"><mark>@data.users.Where(u => u.userID == photo.userID).FirstOrDefault().username</mark></p>
+
+                        </div>
+                    </div> 
+                }
+            </div>
+            }
+        }
+
+    </div>
+</div>
+<style type="text/css">
+    .col-sm-4 {
+        padding: 0;
+    }
+    .modal-body div {
+        padding:0;
+        margin:0;
+    }
+    .text-center {
+        color: black;
+        font-size: 14px;
+        color: #fff;
+    }
+
+    .thumbnail {
+        border: none;
+        background-color: transparent;
+    }
+
+    .img-thumbnail {
+        border: none;
+        background-color: transparent;
+    }
+
+    #photo-area img {
+        max-height: 300px;
+        cursor: pointer;
+    }
+</style>
+@section meta{
+    <meta property="og:site_name" content="Ted's Blog'" />
+    <meta property="og:url" content='http://dangduoc.azurewebsites.net/FriendsandMe/Moments' />
+    <meta property="og:type" content="collection" />
+    <meta property="og:title" content="Ted's Gallery'" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="https://lh3.googleusercontent.com/C9IFs5DvWGPwasEkxRAN3Nopx8UeQraeuG5lILmrZGfLGRJwFW2bXpDovoOXOrdnmPOGWExBM6cPugo2E18GZTj6riQpIbxAcKFWtHwWOgY3SjI_2mxzX-z7CPQwdWh76222wtOh6CAJM4em6rpqv7BjcRvKcyHhV5wRFaBC-O5ZIgDdGYWH4KmE-MKL6rjzfcesce4-3WF2g2MTUDxZf-9GB-cZ8WpWdLyt0_D4aOEYXYsZk_1CGQMCPz3-0b8fpecw1xYW_bqPRMqRRXMe_UuSjyfwTfxk12I27jrNtBxAsnTnTBU2QX66WvCqq1CKy06FjG86CCPcbWXSu0ltRznAdDvIyjMYducwQxRPPBOth6prgMr353U-hksMntbqqCtT1q1S_Q9wZw_7rP6NoNkF1CFRfiav3ydOWuz2ens9YpDhUyg9I0J-a-EAlcnJrn9xTlmB57tNPrlgeVZeXRazjZGPFr3zXCoPOKDh3NwqJjnATa4bpy-dJjfB3Ph67YJaOqw9vXm_SjShm84KnGka1uNZA6x81hZq-f3S33Glf_DevLftEnQll0OorhPsavvx=w1200-h500-no">
+    <meta property="fb:app_id" content="219237851782524" />
+}

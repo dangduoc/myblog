@@ -1,0 +1,66 @@
+﻿@model MyFirstBlog.Models.Security.loginModel
+<div id="login-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" style="color:black;top:5px;right:5px;">&times;</button>
+                <h4 class="modal-title">Login</h4>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { role = "form", id="form-login" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div class="form-group">
+                        <label for="usernameLogin">Username:</label>
+                        @Html.TextBoxFor(model => model.userLogin.UserName, new {  id = "usernameLogin", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.userLogin.UserName)
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordLogin">Password:</label>
+                        @Html.PasswordFor(model => model.userLogin.Password, new {  id = "passwordLogin", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.userLogin.Password)
+                    </div>
+                    <div id="alertlogin"></div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="rememberme" id="rememberme" />Remember Me</label>
+                    </div>
+                        <input type="button" class="btn btn-default" value="Login" id="login-pressed" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+        $(function () {
+            $("#login-pressed").click(function () {
+                var userLogOn = JSON.stringify({
+                    UserName: $("#usernameLogin").val(),
+                    PassWord: $("#passwordLogin").val(),
+                    RememberMe: $("#rememberme").is(":checked")
+                });
+                $.ajax({
+                    url: "/Home/Login",
+                    contentType: "application/json",
+                    data: userLogOn,
+                    dataType: "json",
+                    type: "post",
+                    success: function (response) {
+                        if (response.boolean == true) {
+                            location.reload();
+                        }
+                        else {
+                            $("#alertlogin").html("<span style=\"color:red\" id=\"notif-login\">Password is incorrect</span>");
+                        }
+                    },
+                    error: function (response) {
+                        alert(response);
+                    }
+                });
+            })
+            $("#form-login :input").focus(function () {
+                $("#notif-login").html("<div id=\"alertlogin\"></div>")
+            })
+        });
+</script>

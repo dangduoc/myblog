@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model MyFirstBlog.Models.DailyPost
+<div class="Container" style="padding: 0px; color: black; margin-top: 50px;">
+    <div clas="row" style="height: 100vh; width: 100%; overflow: auto">
+        <div class="col-sm-5" id="left-post" style="position: relative; overflow: hidden;">
+            <img class="img-responsive" src='@Url.Content("~/Content/images/me.jpg")' />
+            <div class="inside-img text-center">
+                <div class="title-post text-center">
+                    <h1>@Model.postTitle</h1>
+                    <time>@Model.dateWrite.ToString("MMMM dd,yyyy")</time>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7" id="right-post" style="color: #303030">
+            <article class="post-detail">
+                <div class="content-post">
+                    <p>
+                        @Html.Raw(Model.postContent)
+                    </p>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+
+@*<section id="daily-post-detail-wrapper">
+    <section class="daily-post-header">
+            <a href="" class="date-daily-post">@Model.dateWrite</a>
+            <div class="line-daily-post"></div>
+            <a href="" class="title-daily-post"><h2>@Model.postTitle</h2></a>       
+    </section>
+    <section class="daily-post-detail-content">
+          <p>
+                @Html.Raw(Model.postContent)
+            </p>
+    </section>
+    <section class="facebook-plugin-daily-post">
+        <h2>Comment</h2>
+        @{
+            var str = "http://dangduoc.azurewebsites.net/DailyPost/Post?id=" + Model.postID;
+        <div class="fb-comments" data-href='@str' data-width="600" data-numposts="5"></div>
+        }
+            </section>
+    <section class="related-daily-post">
+        <h2>Related Posts</h2>
+        <article></article>
+        <article></article>
+    </section>
+</section>

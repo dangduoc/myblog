@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MyFirstBlog.Models.previewTrip>
+
+<div class="Container">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Mã bài viết</td>
+                    <td>Ngày viết</td>
+                    <td>Tên bài viết</td>
+                    <td>Người viết</td>
+                    <td colspan="2"></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var post in Model)
+                {
+                    <tr id="row-@post.previewID">
+                        <td>@post.previewID</td>
+                        <td>@post.date.Value.ToString("MMMM dd,yyyy")</td>
+                        <td>@post.postTitle</td>
+                        <td>@MyFirstBlog.Common.Methods.findusernameByID((int)post.userID)</td>
+                        <td>
+                            <a class="btn btn-primary" href="/FriendsandMe/PreviewTrip?id=@post.previewID" target="_blank">Xem</a>
+                        </td>
+                        <td>
+                            <a class="delete btn btn-danger" data-id="@post.previewID">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+        $(function () {
+            $(".delete").click(function () {
+                var postid=$(this).attr("data-id");
+                if (confirm("You're gonna delete this article. Are you sure?"))
+                {
+                    $.ajax({
+                        url: "/Admin/DeletePendingTrip",
+                        type: "post",
+                        data: { id: postid },
+                        success: function () {
+                                $("#row-" + postid).remove();
+                        },
+                        error: function (data) {
+                            alert(data);
+                        }
+                        
+                    })
+                }
+            })
+        })
+</script>    

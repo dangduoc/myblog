@@ -1,0 +1,87 @@
+﻿@model MyFirstBlog.Models.Security.UserLogin
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/style_login.css" />
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper-dialog">
+        <div class="wrapper-dialog-second"></div>
+        <div id="dialog-login">
+            <div id="switch-login-area">
+                <div class="label-login" id="label-login" style="width:100%">Đăng Nhập Tài Khoản Admin</div>
+            </div>
+            <div id="content-login-area">
+                <div id="content-login" class="dialog-login-content">
+                    <div class="form-login">
+                        @using (Html.BeginForm("Login", "Admin", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model=>model.UserName, new { placeholder = "Tài khoản", id = "usernameLogin" })
+                                @Html.ValidationMessageFor(model => model.UserName)
+                            </div>
+                            <div class="editor-field">
+                                @Html.PasswordFor(model => model.Password, new { placeholder = "Mật khẩu", id = "passwordLogin" })
+                                @Html.ValidationMessageFor(model => model.Password)
+                            </div>
+                            <div id="alertlogin"></div>
+                            <div class="editor-field">
+                                <br />
+                                <input type="checkbox" name="rememberme" id="rememberme" />
+                                Nhớ đăng nhập
+                            </div>
+                            <input type="submit" value="Login" id="login-pressed" />
+                            <div><span style="color:red;font-size:20px;">@ViewBag.inform</span></div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>      
+    <script>
+        $(function () {
+            $(window).load(function () {
+            $(".wrapper-dialog").css("visibility", "visible");
+            $("input").css({ "padding": "17px 0px" });
+        })
+            $("#login-pressed").click(function () {
+                var userLogOn = JSON.stringify({
+                    UserName: $("#usernameLogin").val(),
+                    PassWord: $("#passwordLogin").val(),
+                    RememberMe: $("#rememberme").is(":checked")
+                });
+                $.ajax({
+                    url: "/Home/Login",
+                    contentType: "application/json",
+                    data: userLogOn,
+                    dataType: "json",
+                    type: "post",
+                    success: function (response) {
+                        if (response.boolean == true) {
+                            window.location.href = "/admin";
+                        }
+                        else {
+                            $("#alertlogin").html("<span style=\"color:red\" id=\"notif-login\">Password is incorrect</span>");
+                        }
+                    },
+                    error: function (response) {
+                        alert(response);
+                    }
+                });
+            })
+            $("#form-login :input").focus(function () {
+                $("#notif-login").html("<div id=\"alertlogin\"></div>")
+            })
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin Section</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Noticia+Text:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif !important;
+        }
+
+        #admin-area-left button {
+            padding: 15px;
+        }
+
+        .actived {
+            color: #fff;
+            background-color: #286090;
+            border-color: #204d74;
+        }
+        .navbar a{
+            color:#fff !important;
+        }
+        .navbar{
+            border:0px;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#admin-area-left a.btn").click(function () {
+                $("#admin-area-left a.btn").removeClass("active");
+                $(this).addClass("active");
+                var url = $(this).attr("data");
+                $.ajax({
+                    url: url,
+                    type: "post",
+                    success: function (data) {
+                        $("#content").html(data);
+                    }
+                })
+            });
+            $("#admin-area-left button").click(function (){
+                $("#admin-area-left button").removeClass("active");
+                $(this).addClass("active");
+            })
+        })
+    </script>
+</head>
+<body>
+    <div id="Wrapper-admin" class="Container">
+        <div id="admin-area-left" class="col-sm-2" style="background-color:rgb(28,125,208);height:100vh;overflow:auto;padding:0;">
+            <button class="btn btn-primary" style="width:100%;"><h3 class="text-center">Khu vực quản trị</h3></button>
+            <ul class="list-unstyled">
+                <li>
+                    <button class="btn btn-primary" style="width:100%;" data-toggle="collapse" data-target="#mypost">Khu vực riêng</button>
+                    <ul class="list-unstyled collapse" id="mypost">
+                        <li>
+                            <a data="/Admin/DailyPost" class="btn btn-info" style="width:100%;">Danh sách bài viết</a>
+                        </li>
+                        <li>
+                            <a data="/DailyPost/WritePost" class="btn btn-info" style="width:100%;">Viết bài mới</a>
+                        </li>
+                        <li>
+                            <a data="/Admin/Trips" class="btn btn-info" style="width:100%;">Danh sách chuyến đi</a>
+                        </li> 
+                        <li>
+                            <a data="/Admin/PendingTrips" class="btn btn-info" style="width:100%;">Bài viết chờ xác nhận</a>
+                        </li>
+                        <li>
+                            <a data="/Admin/Users" class="btn btn-info" style="width:100%;">Quản lý tài khoản</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <button class="btn btn-primary" style="width:100%;" data-toggle="collapse" data-target="#mytrip">Bạn bè</button>
+                    <ul class="list-unstyled collapse" id="mytrip">
+                        <li>
+                            <a data="/FriendsandMe/WriteTrip" class="btn btn-info" style="width:100%;">Viết bài các chuyến đi</a>
+                        </li> 
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="admin-area-right" class="col-sm-10" style="overflow:scroll;height:100vh;padding:0;margin:0;">
+            <div id="content">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

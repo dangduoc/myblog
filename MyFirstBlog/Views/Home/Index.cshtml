@@ -1,0 +1,313 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using MyFirstBlog.Models;
+<div class="page-header collapse in" id="about" aria-expanded='true' style="margin-bottom: 0 !important; background-color: #eee">
+    <div class="row">
+        <div class="col-sm-3">
+            <img class="thumbnail" src='@Url.Content("~/Content/images/aboutme.jpg")' id="aboutme-img" />
+        </div>
+        <div class="col-sm-9">
+            <h1>Hi!<br />
+                <small style="font-size: 20px">This is me, I'm writing this blog mainly to get things out of my head by writing it down.
+						I also made some sections include funny moments of me and my friends. 
+						Hope you'd enjoy it <i class="fa fa-smile-o" aria-hidden="true"></i>
+                    <br />
+                    <strong>You can contact with me via:</strong>
+                </small>
+            </h1>
+            <ul class="list-inline">
+                <li><a href="https://facebook.com/dangduoc.95" target="_blank">
+                    <img src='@Url.Content("~/Content/images/facebook.png")' class="img-contact">
+                </a></li>
+                <li><a href="https://twitter.com/ImFineTK" target="_blank">
+                    <img src='@Url.Content("~/Content/images/twitter.png")' class="img-contact">
+                </a></li>
+                <li><a href="https://plus.google.com/u/0/100820830678873196232/posts" target="_blank">
+                    <img src='@Url.Content("~/Content/images/google.png")' class="img-contact">
+                </a></li>
+                <li><a href="https://www.youtube.com/channel/UCNJ7FkAmUgIDDa_DDTztkCw" target="_blank">
+                    <img src='@Url.Content("~/Content/images/youtube.png")' class="img-contact">
+                </a></li>
+                <li><a href="#">
+                    <img src='@Url.Content("~/Content/images/skype.png")' class="img-contact">
+                </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators" style="bottom: 80px">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+    </ol>
+
+    <!-- Wrapper for slides-->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src='https://lh3.googleusercontent.com/6gToBx7uQwjGnOlm4ra1aqMKDgaWDKINTr-WhLFN5C7W-Tu33wKMP_1o9UxeGkRLmiwaqTiLyGBQ8sxnb-HLzUrIXT2uQG3D_lUn_ru1D8SUU_vJHG4PprTax9lcr5AsUpIWoWugN80RVesMDAL7QB5-0tkOIx-NwEOLn3jxyY0449R1kgzxP3Ww4EQaEDlGJliYdeqrKvrvtKbDVmQZL2HZOc1rGCZasZaE0742w-EMRcl6uS2urStfL0F8nYCfl5QlZ4Z5RQcp0wUb2SjJlz_0vjYbXk_sb9gqKs0P1ErReyyLkSmMId4vzwF8s2LT3LDX3V2kEB1HWKyWw3fLQzS0GCscUtLLg1Ro-4E0z9_m8kGntnHcSXCfU-UUk6GopnXtQ4DUCEwTSgHEtkZGjEURbbRBbwWR6BCz4idVVMfnfYa2JXxL3KNh7oYr1bEFpliQywv5FvtZm5isNlreyBgdFSWofRIEDIIq18wEALx4XLRpnq6uxCgArzWG13sbZZIqgWaGp-R3M2NMM78ZQDy9n0ckN_A-7lO2Wzd47Pxu7vmeVNk2DWua4VN3ZEjkmOZv=w1600-h900-no' alt="Đề Hùng Phú Thọ" width="1600" height="900">
+            <div class="carousel-caption">
+                <h3>Đề Hùng Phú Thọ</h3>
+                <p>Chân núi lên đền Mẫu</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src='https://lh3.googleusercontent.com/akHGuXlQmR1atzfXK58QLgWNYV5RloXUJLWhnT-KyfD-_f8qo_USZeH3ZgPJ_y1Ov8rSo_2KDW4WqdD-ZfGtd9DDo_vB5zrr9x6HLjqIAxZvJKLGFRJk6WiYgGUDq1DtksiFzuytRtzVnuhqudRYBod6xcN1bQQSw-2a5QKGcZrPQIRl1HVyOmAs9RS9UYv8MBsEWgzaFHftF--o2nbNPQGW9fy1mTL-YtAdtGVQWnJ54St1QoqTNYCqm5UpmhiwWu3dyt9WyM02mUS_kjFfCIdvpIK26foA8Yv61-7rjOYJiWoJbJEEZrh_L0q5ZInyDkjZW188A9Lrihce7X4RvSchPkOPTOSqLOaU1_5wT3r3Ow52wlSGfBg-nxs97pb6dgoB76w2Aw5vEQPZ1_78HBWXyPxXQ3evvMJhR1DMZhf7hUEVpCBzpEH4Whi9iPzOfeUHUazNPysEaAvypstvmqp_HC5Y43i4rhoIkSP8PVD915V8eMxBq-HLgbyNiYG7O3zqIVJiGZzHLwr31o2xUp84cql5R0YEAL6JEWLC1TAQEVsaqoxr6o_wocS_Gcvd8IJV=w1600-h900-no' alt="Đám Cưới Ông Bạn" width="1600" height="900">
+            <div class="carousel-caption">
+                <h3>Đám Cưới Ông Bạn</h3>
+                <p>Tập thể lớp cấp hai</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src='https://lh3.googleusercontent.com/TDa-nPQFP_5owEby7QsiQDDkD4VQYsc1khObdc03maDGJ8PE2va3msB8R2Su6AiiYPH4jhq6JiOUADJNSt0sbPor6ALtpibHaYvsclpcbA6KQZJTUe-GGUQjlrGyVNe3WeykCMUT6-_uQqwPl5uf1ER9scfXNN1bBeke3uXdIdfNg3XqAAIAPEPKMEYLzZhdYmvyten6R_bFVDRHnpMH6oKHckG4r--Ex4ZUHPKfKXbimDZIkmuYJJedajfwL-Bo1GM3BNZC3yfCItVPqoFX-6G6a3_-Jv5P62YX_BI0d8cXnJJZzPGLW7Oik1AlUrjUi8gzVJifvf7Yu343u_hIYk62aAm2_gdd-g7hyJNShg0R7BLxvNijAmcvCqwXCEavgRP6UVTXyShWYWol279axqkgQXyReShxX_dNbD_0-NmW96c13oPF-aHha43ju7RnCyLihUE3eu1Hh6esL89EzlPL3n83CmPIMrOjcjitKkov8RgUOR7XGZedB2YFHLTRiJcbeC4zH9I70Ip5dQ3S4vbroAJ7w_OGm7zItvg5hQVS9ytXKAKaROGezvI_NCdGnpOJ=w1600-h900-no' alt="Liên Hoan Tết 2016" width="1600" height="900">
+            <div class="carousel-caption">
+                <h3>Liên Hoan Tết 2016</h3>
+                <p>Trước khi ăn</p>
+            </div>
+        </div>
+        <div class="item">
+            <img src='https://lh3.googleusercontent.com/T_pPZH2pUdLuAt230XH4dKP1IqP7bcHgcXOb6FyasS9HkgHITFmt76o-u-__gIvixddLRSAZX5nrREOLCDDR7-qvU8OE7m6vld51kMeXQ54e7MNqiODnQ8_n1QJOsHGEYDNlaPsyQe1awXVGMo-kDwvesrJAxiiGkwz_MG0SKR95J2-T6NvI3VEec4IBXXOIyd5plf1-3xMI6NvLJAGwqfQGkm-maTFtvGCq9DGBB29A27lByEQSO4Ty8TtFqbv-8ULDJabVm--qKa8S9XFysMGJwbzF1X93zOtsuBBQSSmDoadzsTJa3D8M90jvzOJXC35aE68FTL_icuyr8SnRImicS7c7exR84f_WCVQHtNxNR2scxRqKWEIzy63dxh2H7DEOViHi_ZlxzGucVPlXVQ-cwU9eIgDhm2Y1q1DamxPjxdS4ponu7tslXhzVIgRPdAAsXPenj0LSGnDK3eCac4coT7tLI6Qc7aentStADgNprMgNR2t3zY1oq3nkFgDLs142htAJtV-ChsxO-kGTOtea8hjLo-Z_phQ2Ru4GHexS1nFNzPf7shqiuIWkyp7AN5Mh=w1600-h900-no' alt="Cát Bà, hè 2015" width="1600" height="900">
+            <div class="carousel-caption">
+                <h3>Cát Bà, hè 2015</h3>
+                <p>Anh em trên boong tàu</p>
+            </div>
+        </div>
+        <div class="item">
+            <img src='https://lh3.googleusercontent.com/3BedXGrUp-ViDZ90Db_8Oe7czev9bvwutGMkPEZesG5QTMM-T2vV4rcEbh97bN6iT_scPGCidTzp__GhkpFqXF5MPaD3AknCPFXo69-x-DyQ9T5MDjyZnxDS0ZZ1OuU1SRtgaFUhkHVUS1ymuHB9A4Ab1ViP7SwSwBCecg4u7YcgA_O_CJCz6xc5oroaN0OaYxeE0nBcYap9ejYXthiHU0aU7l7SCiA7kY_5zXUd8385FP6wozY9eA0161CIQ5MhOMs89w98c9a_Imv2W04nnfoa99Gvv4wavJa2-XEEwwY6B5TeSIYHqQ2wrNuhmS0m_i6rZFxjJGBeLqQNuJTA1FYurItSzhhhwwQcwiLU7nkU8tSnuYVHMkg6CY9nMsum6e9M9yqQu5C_dQIzkiGAQVOBARxxRG9xVD-bzl3e3UpeKaydKgQuF5kOJ33OIcuJo_N0jEvR0DdDnU7QpZRnQa5upiAZZFX_92U6eeaOiWEQ5sRANkegAl2CWzfohKflcmhuz5lRN01PCWF9jPPb6PWKv7yEErHod1s4xY0QZXLRvKH9c0Ax71AibY3JhuLTOkvx=w1600-h900-no' alt="Phượt Đại Lải, Tam Đảo" width="1600" height="900">
+            <div class="carousel-caption">
+                <h3>Phượt Đại Lải, Tam Đảo</h3>
+                <p>Chụp ảnh kỉ niệm tại hồ Đại Lải</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="Container">
+    <div class="row" style="font-size: 22px;">
+        <div class="col-sm-6">
+            <h2><i class="fa fa-hand-o-right" aria-hidden="true"></i>Life Lessons From HIMYM</h2>
+            <p style="background-color: #f9f9f9">
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>Nothing good ever happens after 2 A.M<br />
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>Don't chase after what does not work. Let the universe take over<br />
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>Things happens for a reason<br />
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>Don't ever give up crazy time with your friends<br />
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>Miracle happen<br />
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>Things you may not have liked before may not be that bad later on<br />
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>Perfect isn't always perfect<br />
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>Some people have expiration dates<br />
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>Wait for it<br />
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>Don't postpone joy<br />
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>The important moments shouldn't be wasted, because you can't get them back<br />
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>Be clear about the things you say<br />
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>The most important people in your life are the ones you can picture sitting on the porch with<br />
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>The talk is one of the worst things ever, but it is important<br />
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>You're not looking for someone who accepts your quirks, you're looking for someone who loves them, cherishes them, and loves you as a person becaues of them.<br />
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>Some people are worth a lot of work to keep around.<br />
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>Get out of the house, go for a walk, get a bagel.<br />
+                <p>
+        </div>
+        <div class="col-sm-6">
+            <h2><i class="fa fa-hand-o-right" aria-hidden="true"></i>Favorite Quotes</h2>
+            <ul class=".list-unstyled">
+                <li>
+                    <blockquote>
+                        <p>
+                            Do not correct a fool, or he will hate you; correct a wise man and he will appreciate you.
+                        </p>
+                        <footer>PROVERBS 9:8</footer>
+                    </blockquote>
+                </li>
+                <li>
+                    <blockquote>
+                        <p>
+                            If you love someone, set them free. If they come back they’re yours; if they don’t they never were
+                        </p>
+                        <footer>RECHARD BACH</footer>
+                    </blockquote>
+                </li>
+                <li>
+                    <blockquote>
+                        <p>
+                            Immature love says: "I love you because I need you." Mature love says "I need you because I love you."
+                        </p>
+                        <footer>ERICH FROMM</footer>
+                    </blockquote>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="text-left" style="overflow: hidden;">
+        <h1 style="font-size: 50px"><i class="fa fa-hand-o-right" aria-hidden="true"></i>My Last Post</h1>
+        @{
+            MyBlogDBModel data = new MyBlogDBModel();
+            var last_post = data.DailyPosts.OrderByDescending(p=>p.dateWrite).FirstOrDefault();
+        <a href="/DailyPost/Post?id=@last_post.postID.ToString()" style="color:black"><h2>@last_post.postTitle</h2></a>
+        <p>
+            @Html.Raw(last_post.postContent)
+			<footer class="text-right">@last_post.dateWrite.ToString("MMMM dd,yyyy")</footer>
+        </p>
+        }
+        <a class="btn" href="/DailyPost">More post here</a>
+    </div>
+</div>
+<div class="Container text-left" style="overflow: hidden; background-color: #2d2d30">
+
+    <link href="~/Content/lightslider.css" rel="stylesheet" />
+    <script src="~/Scripts/lightslider.js"></script>
+    <script src="~/Scripts/ajSlider.min.js"></script>
+    <div class="row">
+        <div class="col-sm-3 text-left" style="color: #fff">
+            <h1><i class="fa fa-picture-o" aria-hidden="true"></i><a href="/FriendsandMe/Moments">My Gallery</a></h1>
+            <h2><small>These are <strong>the best moment</strong> I'd taken with people I love. You can find more by click the button bellow</small></h2>
+            <a class="btn" href="/FriendsandMe/Moments">View more</a>
+        </div>
+        <div class="col-sm-9">
+            <div class="item">
+                <div class="clearfix" style="max-width: 100%;">
+                    <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                        <li data-thumb="https://farm8.staticflickr.com/7757/26191886113_8ec9b9e169_m.jpg">
+                            <img src="https://farm8.staticflickr.com/7757/26191886113_8ec9b9e169_b.jpg" class="img-responsive" />
+                        </li>
+                        <li data-thumb="https://farm2.staticflickr.com/1656/26631423811_c6b1401e9b_m.jpg">
+                            <img src="https://farm2.staticflickr.com/1656/26631423811_c6b1401e9b_b.jpg" class="img-responsive" />
+                        </li>
+                        <li data-thumb="https://farm2.staticflickr.com/1717/26604485872_2f48e92eaa_m.jpg">
+                            <img src="https://farm2.staticflickr.com/1717/26604485872_2f48e92eaa_b.jpg" class="img-responsive" />
+                        </li>
+                        <li data-thumb="https://farm2.staticflickr.com/1470/26604486082_15bbec94c5_m.jpg">
+                            <img src="https://farm2.staticflickr.com/1470/26604486082_15bbec94c5_b.jpg" class="img-responsive" />
+                        </li>
+                        <li data-thumb="https://farm2.staticflickr.com/1698/26697554735_50d11a2853_m.jpg">
+                            <img src="https://farm2.staticflickr.com/1698/26697554735_50d11a2853_b.jpg" class="img-responsive" />
+                        </li>
+                        <li data-thumb="https://farm2.staticflickr.com/1497/26631423851_771c73b1ba_m.jpg">
+                            <img src="https://farm2.staticflickr.com/1497/26631423851_771c73b1ba_b.jpg" class="img-responsive" />
+                        </li>
+                        <li data-thumb="https://farm2.staticflickr.com/1495/26697554145_aef4327ebb_m.jpg">
+                            <img src="https://farm2.staticflickr.com/1495/26697554145_aef4327ebb_b.jpg" class="img-responsive" />
+                        </li>
+                        <li data-thumb="https://farm2.staticflickr.com/1700/26697553925_fe3f400c45_m.jpg">
+                            <img src="https://farm2.staticflickr.com/1700/26697553925_fe3f400c45_b.jpg" class="img-responsive" />
+                        </li>
+                        <li data-thumb="https://farm2.staticflickr.com/1553/26631424181_296cb5cda2_m.jpg">
+                            <img src="https://farm2.staticflickr.com/1553/26631424181_296cb5cda2_b.jpg" class="img-responsive" />
+                        </li>
+                        <li data-thumb="https://farm2.staticflickr.com/1573/26604486852_696525d323_m.jpg">
+                            <img src="https://farm2.staticflickr.com/1573/26604486852_696525d323_b.jpg" class="img-responsive" />
+                        </li>
+                        <li data-thumb="https://farm2.staticflickr.com/1474/26604486182_c0d6b42dd7_m.jpg">
+                            <img src="https://farm2.staticflickr.com/1474/26604486182_c0d6b42dd7_b.jpg" class="img-responsive" />
+                        </li>
+                        <li data-thumb="https://farm2.staticflickr.com/1698/26604486402_1c00e2cba9_m.jpg">
+                            <img src="https://farm2.staticflickr.com/1698/26604486402_1c00e2cba9_b.jpg" class="img-responsive" />
+                        </li>
+                        <li data-thumb="https://farm2.staticflickr.com/1616/26631424361_62e71d8aa8_m.jpg">
+                            <img src="https://farm2.staticflickr.com/1616/26631424361_62e71d8aa8_b.jpg" class="img-responsive" />
+                        </li>
+                        <li data-thumb="https://farm2.staticflickr.com/1608/26631423981_e0bf0c0b07_m.jpg">
+                            <img src="https://farm2.staticflickr.com/1608/26631423981_e0bf0c0b07_b.jpg" class="img-responsive" />
+                        </li>
+                        <li data-thumb="https://farm2.staticflickr.com/1633/26604486552_8a8a6daca1_m.jpg">
+                            <img src="https://farm2.staticflickr.com/1633/26604486552_8a8a6daca1_b.jpg" class="img-responsive" />
+                        </li>
+                        <li data-thumb="https://farm2.staticflickr.com/1693/26631424621_16e8e56ef2_m.jpg">
+                            <img src="https://farm2.staticflickr.com/1693/26631424621_16e8e56ef2_b.jpg" class="img-responsive" />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row text-left" style="color: #fff;">
+        <div class="col-sm-8 text-left">
+            <h1><i class="fa fa-car" aria-hidden="true"></i><a href="/FriendsandMe/Trips">My Trips</a></h1>
+            <h2><small>I've had <strong>such great times</strong> with my friends travelling from the top of mountains to the middle of the sea. I will save it as <strong>the best memories</strong>. You can see more and detail of our trips by click the button below</small></h2>
+            <a class="btn" href="/FriendsandMe/Trips">View More</a>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+    <style>
+        .item {
+            margin-bottom: 60px;
+        }
+
+        #content-slider {
+            height: 200px;
+        }
+
+        .content-slider li {
+            height: 100%;
+            max-width: 300px;
+        }
+
+        .content-slider img {
+            max-height: 100%;
+        }
+
+        .lSSlideOuter .lSPager.lSpg {
+            display: none;
+        }
+    </style>
+    <div class="row" style="color: #fff">
+        <div class="item">
+            <ul id="content-slider" class="content-slider" style="height:170px;">
+                @foreach (MyFirstBlog.Models.Trip t in ViewBag.trips)
+                {
+                    string img=(!String.IsNullOrEmpty(t.imgThumbnail))?t.imgThumbnail:"";
+                    string title=(!String.IsNullOrEmpty(t.postTitle))?t.postTitle:"Title was not set";
+                  <li class="recent-post">
+                        <img src="@Url.Content(img)" class="img-responsive" style="background-color: black" />
+                        <div class="text-center">
+                            <a href="/FriendsandMe/Trip/@t.postID.ToString()">
+                                <h4 class="text-uppercase">@title<br />
+                                </h4>
+                                <small>April 09,2016</small>
+                            </a>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        $(function () {
+            $("#content-slider").lightSlider({
+                loop: true,
+                keyPress: true
+            });
+            $('#image-gallery').lightSlider({
+                gallery: true,
+                item: 1,
+                thumbItem: 9,
+                slideMargin: 0,
+                speed: 500,
+                pause: 3000,
+                auto: true,
+                loop: true,
+                onSliderLoad: function () {
+                    $('#image-gallery').removeClass('cS-hidden');
+                }
+            });
+        })
+
+    </script>
+}
+
+@section meta{
+    <meta property="og:site_name" content="Blog Ted" />
+    <meta property="og:url" content='http://dangduoc.azurewebsites.net/' />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Ted's Blog" />
+    <meta property="og:description" content="Chia sẻ niềm vui, tâm trạng, các thứ. Chỗ cho anh em bạn bè chém gió. Cập nhập những thông tin nóng hỏi hàng ngày của lũ bạn khốn nạn.
+                   Ảnh troll, các thứ :))" />
+    <meta property="og:image" content="@Url.Content("~/Content/images/about_image.png")" />
+    <meta property="fb:app_id" content="219237851782524" />
+}

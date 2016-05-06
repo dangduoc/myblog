@@ -1,0 +1,57 @@
+﻿@model MyFirstBlog.Models.DailyPost
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Post</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css">
+    <link href='https://fonts.googleapis.com/css?family=Noticia+Text:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body style="font-family:'Noticia Text'">
+    @{
+        if (!string.IsNullOrEmpty(ViewBag.OK))
+        {
+            <h1 style="color:red;display:block;clear:both">@ViewBag.OK</h1>
+        }
+    }
+    <div id="wrapper-action-post">
+        <div style="width:45%;display:inline-block;margin-left:20px;">
+            <div style="margin-bottom: 20px;"><h1>Sửa bài viết</h1></div>
+            <div style="margin-bottom: 20px">
+                @using (Html.BeginForm("EditPost", "DailyPost", FormMethod.Post, new { id = "formpost" }))
+                {
+                    <input name="postid" value='@Model.postID.ToString()' type="hidden" />
+                    <input placeholder="Tiêu đề bài viết" value="@Model.postTitle" name="title" type="text" style="font-size: 24px" id="title" spellcheck="false" required />
+                    <br />
+                    <text>Select Date:</text><input type="date" name="date" value=@Model.dateWrite.ToString("yyyy-MM-dd")  required />
+                    <div>
+                        <textarea name="content" spellcheck="false" rows="15" cols="60" style="font-size:17px" placeholder="Viết bài" required>@Model.postContent</textarea>
+                    </div>
+                    <input type="submit" value="Edit" style="padding: 10px;width: 100px;box-sizing: border-box;" />
+                }
+            </div>
+        </div>
+        <div style="width:45%;float:right">
+            <h1 style="display:block">Cách bài viết được hiển thị</h1>
+            <div style="box-shadow:0 0 3px 0px rgba(0,0,0,0.3); width:80%; padding:20px">
+                <div id="preview"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#formpost").children("*").keyup(function () {
+            var content = $("textarea").val();
+            var title = $("#title").val();
+            str_preview = "<h2 style='border-bottom:0.5px solid #f0f0f0'>" + title + "</h2 ><p style='word-break:break-word;'>" + content + "</p><br/>";
+            $("#preview").html(str_preview);
+        });
+        $(window).load(function () { 
+            var content = $("textarea").val();
+            var title = $("#title").val();
+            str_preview = "<h2 style='border-bottom:0.5px solid #f0f0f0'>" + title + "</h2 ><p style='word-break:break-word;'>" + content + "</p><br/>";
+            $("#preview").html(str_preview);
+        })
+    </script>
+</body>
+</html>
+

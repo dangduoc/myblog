@@ -1,0 +1,91 @@
+﻿@model MyFirstBlog.Models.Trip
+@using MyFirstBlog.Models
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit Trip</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Noticia+Text:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+   
+   
+    <div class="Container" style="padding:20px;">
+        <div>
+            <h1>Chỉnh sửa bài viết</h1><br />
+            @{
+                user crnt_user = (user)Session["current_user"];
+                <h4><mark>Người viết hiện tại: @crnt_user.username</mark></h4>
+            }
+            <mark>
+                Nếu muốn thêm ảnh:<br />
+                <span>
+                    Chú ý:<br />
+                    1, Không nên lấy ảnh từ facebook vì nó có thời gian timeout, nghĩa là ảnh đó không tồn tại mãi<br />
+                    2, Nếu lấy ảnh từ google photo thì phải để public cái ảnh hoặc cả folder ảnh<br />
+                    3, Upload lên <a href="https://www.flickr.com/" target="_blank">Flickr.com</a> hoặc <a href="http://imgur.com/" target="_blank">Imgur.com</a><br />
+                    Sau đó lấy link ảnh(URL) rồi điền vào chỗ thêm ảnh(Cách này tốt nhất)<br />
+                    4, Hình ảnh giữ nguyên tỉ lệ bằng cách chỉ điền width. lớn nhất 800px thôi nhé!
+                </span>
+            </mark>
+        </div>
+        @using (Html.BeginForm("Writetrip", "FriendsandMe", FormMethod.Post, new { id = "form" }))
+        {
+            <h4><label for="title">Tiêu đề bài viết</label></h4>
+            <input id="title" name="title" class="form-control" value="@Model.postTitle" required />
+            <h4><label for="summary">Tóm tắt bài viết</label></h4>
+            <input id="summary" name="summary" value="@Model.postSummary" class="form-control" required />
+            <h4><label for="thumbnail">Ảnh hiển thị(điền URL hình ảnh)</label></h4>
+            <input id="thumbnail" name="thumbnail" class="form-control" value="@Model.imgThumbnail" required />
+            <img class='img-thumbnail img-responsive' id="img-thumbnail" style='max-width:200px' src="@Model.imgThumbnail" />
+            <h4><label for="thumbnail">Link Folder ảnh chia sẻ(nếu có)</label></h4>
+            <input id="folder" name="folder" class="form-control" />
+            <h4><label for="id=editor">Nội dung bài viết</label></h4>
+            <textarea id="editor" name="editor"></textarea>
+
+            <input id="text-content" name="content" hidden />
+        }
+        <a class="btn btn-primary" id="preview-btn" href="#preview-area">Xem thử</a>
+        <input type="submit" class="btn btn-danger" form="form" id="btn-submit" value="Đăng bài" />
+    </div>
+    <div id="preview-area">
+        <h2 style="border-bottom:0.5px solid black">Bài xem thử </h2>
+        <h3><div id="title-preview"></div></h3>
+        <div class="post-content">
+            <div id="preview"></div>
+        </div>
+    </div>
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script>
+
+    $(function () {
+            CKEDITOR.replace("editor");
+            $("#preview-btn").click(function () {
+                var html = CKEDITOR.instances.editor.getData();
+                $("#title-preview").html($("#title").val());
+                $("#text-content").val(html);
+                $("#preview").html(html);
+
+            })
+            timer = setInterval(updateDiv, 100);
+            function updateDiv() {
+                var editorText = CKEDITOR.instances.editor.getData();
+                $('#text-content').val(editorText);
+            }
+            $("#thumbnail").blur(function () {
+                var src = $(this).val();
+                $("#img-thumbnail").attr("src", src);
+            })
+            $(window).load(function () {
+                CKEDITOR.instances.editor.setData('@Html.Raw(Json.Encode(Model.postContent))');
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<MyFirstBlog.Models.user>
+<div class="top-section">
+    <h2>Danh sách các tài khoản</h2>
+</div>
+<div class="mid-section">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Mã Tài Khoản</td>
+                    <td>Tên Tài Khoản</td>
+                    <td>Chi Tiết</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr id="row-@user.userID">
+                        <td>@user.userID</td>
+                        <td>@user.username</td>
+                        <td>
+                            <button class="view-detail btn btn-primary" data-id="@user.userID" data-toggle="modal" data-target="#modal">Xem</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4>Account's information</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="name"></div>
+                    <div class="gender"></div>
+                    <div class="addressLine"></div>
+                    <div class="dateCreate"></div>
+                    <div class="role"></div>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+        $(function () {
+            $(".view-detail").click(function () {
+                var userid = parseInt($(this).attr("data-id"));
+                    $.ajax({
+                        url: "/Admin/UserDetail",
+                        type: "post",
+                        data: { id: userid },
+                        success: function (data) {
+                            $(".name").text("User Name: " + data.ten);
+                            $(".gender").text("Gender: " + data.gioitinh);
+                            $(".addressLine").text("Address: " + data.diachi);
+                            $(".dateCreate").text("Date created: " + data.ngaytao);
+                            $(".role").text("Role: " + data.vaitro);
+                        }
+                    })
+            })
+        })
+    </script>

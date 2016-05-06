@@ -1,0 +1,93 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<MyFirstBlog.Models.DailyPost>
+<div class="Container" style="padding: 0px; color: black; margin-top: 50px;">
+    <div class="row" style="height: 100vh; width: 100%; overflow: auto">
+        <div class="col-sm-5" id="left-post" style="position: relative; overflow: hidden;">
+            <img class="img-responsive" src='@Url.Content("~/Content/images/me.jpg")' />
+        </div>
+        <div class="col-sm-7" id="right-post">
+            @foreach(var post in Model)
+            {
+            <article class="post-articles">
+                <div class="entry">
+                    <header class="entry-header">
+                        <h2 class="entry-title">
+                            <a href="/DailyPost/Post?id=@post.postID.ToString()" title="" rel="">@post.postTitle</a>
+                        </h2>
+                    </header>
+                    <div class="entry-summary" itemprop="text">
+                        <p><small>@Html.Raw(post.postContent)</small></p>
+                    </div>
+                    <footer class="entry-meta">
+                        <span class="entry-date">
+                            <a href="" rel="">@post.dateWrite.ToString("MMMM dd,yyyy")</a></span>
+                        by: <span class="entry-author">
+                            <span class="author vcard">
+                                <a class="" href="" title="" rel="">Me</a>
+                            </span>
+                        </span>
+                    </footer>
+                </div>
+            </article>
+            }
+        </div>
+    </div>
+</div>
+<style>
+    .entry-summary {
+    display: block;
+    height:200px;
+    padding-top:15px;
+    font-size:21px;
+    line-height: 1.4;
+}
+.entry-summary p{
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  height: 88.2px; /* Fallback for non-webkit */
+  margin: 0 auto;
+  font-size: 21px;
+  line-height: 1.4;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+</style>
+@*<section id="daily-post-wrapper">
+    <section class="orderby-section"> 
+        @using (Html.BeginForm("index", "DailyPost", FormMethod.Post, new { id = "form-order" }))
+        {       <text>Sắp Xếp:</text>
+            <select id="order-content" name="order-type">
+                @if (ViewBag.selected == "Ins")
+                {
+                    <option>Gần đây nhất</option>
+                    <option selected>Cũ nhất</option>
+                }
+                else
+                {
+                    <option selected>Gần đây nhất</option>
+                    <option>Cũ nhất</option>
+                }
+                </select>
+        }
+    </section>
+    @foreach (var post in Model)
+    {
+        var date_write = post.dateWrite.ToString("MMMM dd,yyyy");
+    <article>
+        <section class="daily-post-header">
+            @Html.ActionLink(date_write.ToString(), "Post", new { id = Convert.ToInt32(post.postID) }, new { @class = "date-daily-post" }) 
+            <div class="line-daily-post"></div>
+            @Html.ActionLink(post.postTitle, "Post", new { id = Convert.ToInt32(post.postID) }, new { @class = "title-daily-post" })      
+        </section>
+        <section class="daily-post-content">
+            <p>
+                @Html.Raw(post.postContent)
+            </p>
+        </section>
+    </article>
+        }
+</section>*@

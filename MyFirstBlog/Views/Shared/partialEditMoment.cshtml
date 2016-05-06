@@ -1,0 +1,84 @@
+﻿<div id="editpost-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" style="width:700px;">
+            <div class="modal-header">
+                <button type="button" id="close" class="close" data-dismiss="modal" style="color: black; top: 5px; right: 5px;">&times;</button>
+                <h4 class="modal-title">Edit post</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" id="form-edit">
+                    <div class="form-group">
+                        <label for="Title">Title</label>
+                        <input class="form-control" id="Title" value=""/>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Enter Image's Adress</label><br/>
+                        <label for="content">Use <a href="http://imgur.com/" target="_blank" style="color:blue">Imgur</a> or <a target="_blank"  href="www.flickr.com" style="color:blue">Flickr</a> to upload photo and get the image's address</label>
+                        <input class="form-control" id="image-url" required value=""/>
+                        <button class="btn-primary" id="test-image">Test Image</button>
+                        <img src='' id="img" class="img-responsive"/></div>
+                    <div class="form-group">
+                        <h3 data-toggle="collapse" data-target="#icon" style="cursor:pointer">Icon<span class="caret"></span></h3>
+                        <div id="icon" class="collapse">
+                            <i class="fa fa-hand-o-right" aria-hidden="true"></i><code>&lti class="fa fa-hand-o-right" aria-hidden="true"&gt&lt/i&gt</code><br />
+                            <i class="fa fa-circle" aria-hidden="true"></i><code>&lti class="fa fa-circle" aria-hidden="true"&gt&lt/i&gt</code><br />
+                            <i class="fa fa-bicycle" aria-hidden="true"></i><code>&lti class="fa fa-bicycle" aria-hidden="true"&gt&lt/i&gt</code><br />
+                            <i class="fa fa-thumbs-up" aria-hidden="true"></i><code>&lti class="fa fa-thumbs-up" aria-hidden="true"&gt&lt/i&gt</code><br />
+                            <i class="fa fa-thumbs-down" aria-hidden="true"></i><code>&lti class="fa fa-thumbs-down" aria-hidden="true"&gt&lt/i&gt</code><br />
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i><code>&lti class="fa fa-pencil-square-o" aria-hidden="true"&gt&lt/i&gt</code><br />
+                            <i class="fa fa-heart" aria-hidden="true"></i><code>&lti class="fa fa-heart" aria-hidden="true"&gt&lt/i&gt</code><br />
+                            <i class="fa fa-meh-o" aria-hidden="true"></i><code>&lti class="fa fa-meh-o" aria-hidden="true"&gt&lt/i&gt</code><br />
+                            <i class="fa fa-plus" aria-hidden="true"></i><code>&lti class="fa fa-plus" aria-hidden="true"&gt&lt/i&gt</code><br />
+                            <i class="fa fa-question-circle" aria-hidden="true"></i><code>&lti class="fa fa-question-circle" aria-hidden="true"&gt&lt/i&gt</code><br />
+                            <i class="fa fa-smile-o" aria-hidden="true"></i><code>&lti class="fa fa-smile-o" aria-hidden="true"&gt&lt/i&gt</code><br />
+                            Get more: <a href="https://fortawesome.github.io/Font-Awesome/icons/" style="color:blue"> here</a>
+                         </div>
+                        <label for="content">Write something about your picture</label>
+                        <textarea class="form-control" rows="7" id="content"></textarea>
+                    </div>
+                    <button class="btn btn-default" id="edit">Upload</button>
+                    <div id="inform"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#form-edit').on('submit', function (e) {
+            e.preventDefault();
+        }
+        );
+        $("#close").click(function () {
+            $("#inform").html("<div id='inform'></div>");
+            location.reload();
+        })
+        $("#test-image").on("click", (function () {
+            var url = $("#image-url").val();
+            $("#img").attr("src", url);
+        })
+        );
+        $("#edit").click(function () {
+            var newmoment = {
+                Summary: $("#content").val(),
+                Image: $("#image-url").val(),
+                title: $("#Title").val()
+            };
+            $.ajax({
+                url: "/FriendsandMe/Post",
+                type: "post",
+                data: JSON.stringify(newmoment),
+                contentType: "application/json",
+                success: function () {
+                    $("#inform").html("<span style='color:red'>Uploaded, close modal to see the change</span>");
+                },
+                error: function () {
+                    $("#inform").html("<span style='color:red'>Failed to edit, Something went wrong!</span>");
+                }
+            });
+        });
+       
+
+    })
+</script>

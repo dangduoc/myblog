@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MyFirstBlog.Models.DailyPost>
+<div class="Container">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>Post ID</td>
+                <td>Date</td>
+                <td>Title</td>
+                <td>Content</td>
+                <td colspan="3">Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var post in Model)
+            {
+                <tr id="row-@post.postID">
+                    <td>@post.postID</td>
+                    <td>@post.dateWrite.ToString("MMMM dd,yyyy")</td>
+                    <td>@post.postTitle</td>
+                    <td><p style="width:200px;overflow:hidden;white-space:nowrap">@post.postContent</p></td>
+                    <td><a class="btn btn-info"  href="/DailyPost/Post?id=@post.postID.ToString()" target="_blank">View</a></td>
+                    <td><a class="btn btn-info" href="/DailyPost/EditPost?id=@post.postID.ToString()" target="_blank"><span class="btn-edit" data-id=@post.postID.ToString()>Edit</span></a></td>
+                    <td><button class="btn-delete btn btn-danger" data-id=@post.postID.ToString()>Delete</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+    <script>
+        $(function () {
+            $(".btn-delete").click(function () {
+                var postid=$(this).attr("data-id");
+                if (confirm("You're gonna delete this post. Are you sure?"))
+                {
+                    $.ajax({
+                        url: "/DailyPost/DeletePost",
+                        type: "post",
+                        data: { id: postid },
+                        success: function (data) {
+                            if (data == "succeed") {
+                                $("#row-" + postid).remove();
+                            }
+                            else
+                            {
+                                alert(data);
+                            }
+                        }
+                    })
+                }
+            })
+        })
+    </script>    

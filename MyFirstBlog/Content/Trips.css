@@ -1,0 +1,198 @@
+#trips a{
+	color:#000;
+}
+#trip-detail a{
+	color:#000;
+}
+#trips p{
+	font-size:16px;
+}
+#trips article{
+	padding-bottom: 50px;
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+a.read-more:hover{
+	color:red !important;
+}
+a.author:hover{
+	color:red !important;
+}
+a.fb:hover{
+	color:blue !important;
+}
+a.comment:hover{
+	color:yellow !important;
+}
+a.youtube:hover{
+	color:red !important;
+}
+a.skype:hover{
+	color:#33FFFF !important;
+}
+a.google:hover{
+	color:#C80000 !important;
+}
+a.twitter:hover{
+	color:#00FFFF !important;
+}
+a.instagram:hover{
+	color:#666666 !important;
+}
+.social-contact a{
+	width: 115px;
+}
+.social-contact i{
+	 width: 36px;
+    height: 36px;
+    line-height: 34px;
+    background: none;
+    color: inherit;
+    border: 1px solid #E0E0E0;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    margin: 0 5px 5px;
+    display: inline-block;
+    font-size: 14px;
+    text-align: center;
+}
+.recent-post{
+	position: relative;
+	display: block;
+	margin-bottom: 20px;
+}
+.recent-post:hover{
+	background-color: rgba(0,0,0,0.5);
+}
+.recent-post div{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	right: 0;
+	top:0;
+	opacity: 0;
+	background-color: rgba(0,0,0,0.7);
+	transition: opacity 0.7s;
+	-webkit-transition:opacity 0.7s;
+}
+.recent-post div a{
+	color:#fff !important;
+}
+.recent-post:hover div{
+	opacity: 1;
+}
+/**/
+ .trip-photo{
+        width: 250px;
+        height:150px;
+    }
+    .photo-post-area{
+        max-height: 430px;
+    }
+.photo-post-area{
+    display: block;
+    overflow: auto;
+}
+.trip-photo{
+	margin: 5px;
+	display: inline-block;
+	position: relative;
+    overflow:hidden;
+}
+.trip-photo div.title{
+	display: block;
+	height: 100px;
+    width:100%;
+	position: relative;
+	text-align: center;
+	font-size: 24px;
+	font-weight: 600;
+}
+.post-content{
+    width: 80%;
+    width: 100%;
+    font-size: 17px;
+    margin-top:20px;
+}
+.post-content img{
+    max-width: 80%! important;
+    display: block;
+    margin: 10px 0 10px 0;
+}
+.myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.myImg:hover {opacity: 0.7;}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1002; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 800px;
+}
+
+/* Caption of Modal Image */
+.caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 800px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {    
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes zoom {
+    from {transform: scale(0.1)} 
+    to {transform: scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 50px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
