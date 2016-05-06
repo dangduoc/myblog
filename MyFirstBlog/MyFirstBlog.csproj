@@ -420,6 +420,7 @@
     <Content Include="Content\lightslider.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\stylePost.css" />
+    <Content Include="Content\StyleSheet1.css" />
     <Content Include="Content\style_login.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
