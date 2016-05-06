@@ -151,6 +151,7 @@
     <Compile Include="Common\CustomAthorizeAttribute.cs" />
     <Compile Include="Common\CustomPrincipal.cs" />
     <Compile Include="Common\FlickrManager.cs" />
+    <Compile Include="Common\fuck.cs" />
     <Compile Include="Common\Methods.cs" />
     <Compile Include="Common\Rules.cs" />
     <Compile Include="Controllers\AdminController.cs" />
